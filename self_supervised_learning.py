@@ -23,7 +23,8 @@ tokenized_dataset = dataset.map(tokenize_function, batched=True, remove_columns=
 # Step 5: Define training arguments with output_dir specified
 training_args = TrainingArguments(
     output_dir='./output',  # Specify where checkpoints and logs will be saved
-    per_device_train_batch_size=4,
+    per_device_train_batch_size=2,  # Reduce batch size to lower computational load
+    gradient_accumulation_steps=8,  # Accumulate gradients to simulate larger batch size
     num_train_epochs=3,
     logging_dir='./logs',
     overwrite_output_dir=True,
